@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: melanoma
+  labels:
+    app: melanoma
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: melanoma
+  template:
+    metadata:
+      labels:
+        app: melanoma
+    spec:
+      containers:
+        - name: melanoma
+          image: melanoma.azurecr.io/melanoma:latest
+          ports:
+            - containerPort: 5000
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: melanoma
+spec:
+  type: LoadBalancer
+  ports:
+    - port: 5000
+  selector:
+    app: melanoma
