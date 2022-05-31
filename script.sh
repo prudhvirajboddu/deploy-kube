@@ -11,8 +11,8 @@ sudo swapoff -a
 sudo sed -i '/ swap / s/^\(.*\)$/#\1/g' /etc/fstab
 
 
-modprobe br_netfilter
-sysctl -p
+sudo modprobe br_netfilter
+sudo sysctl -p
 sudo sysctl net.bridge.bridge-nf-call-iptables=1
 
 curl -fsSL https://get.docker.com -o get-docker.sh
